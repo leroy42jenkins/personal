@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MH</title>
+<style>
+    html {
+        font-size: 14px;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        color: #f2f2f2;
+        font-family: monospace;
+        background-image: url('snow-pine-trees.jpg');
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+
+    body::-webkit-scrollbar { display: none; }
+
+    body {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        margin: 1rem;
+        padding: 0;
+    }
+
+    h1, h2 { font-size: 1.5rem; }
+
+    h3, h4 { font-size: 1.25rem; }
+
+    h5, h6 { font-size: 0.75rem; }
+
+    h1 { font-weight: bold; }
+
+    h2 { font-weight: normal; }
+
+    h3 { font-weight: bold; }
+
+    h4 { font-weight: normal; }
+
+    h5 { font-weight: bold; }
+
+    h6 { font-weight: normal; }
+
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        margin: 0.5rem 1rem 0 2.5rem;
+        padding: 0;
+    }
+
+    .main-container {
+        margin: 0 auto;
+        width: 95%;
+    }
+
+    .header { 
+        margin: 0;
+        padding: 0 0 2rem 0;
+        border-radius: 0 0 0.5rem 0.5rem;
+        text-align: center;
+        background-color: #004953;
+        box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px;
+    }
+
+    .header-img {
+        border: none;
+        border-radius: 50%;
+        margin: 1.5rem 0 0 0;
+        padding: 0;
+        width: 6rem;
+        height: 6rem;
+    }
+
+    .links {
+        margin: 0 auto;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .link {
+        margin: 0;
+        padding: 1rem;
+    }
+
+    .link:hover {
+        cursor: pointer;
+    }
+
+    .link-img {
+        max-width: 1.5rem;
+        max-height: 1.5rem;
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+    
+    .about { 
+        margin: 0;
+        padding: 0 1rem 0 1rem;
+        text-align: center;
+    }
+
+    .content {
+        margin: 0;
+        padding: 0;
+    }
+
+    .exp {
+        margin: 2rem 0 2rem 0;
+        padding: 0.5rem 0 2rem 0;
+        border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+        text-align: center;
+        background-color: #004953;
+        box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px;
+    }
+
+    .exp-item {
+        margin: 2rem 0 0 0;
+        padding: 0;
+        text-align: left;
+    }
+
+    .exp-item-header {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .exp-item-date {
+        margin: 1.25rem 1rem 0 0;
+        padding: 0;
+        font-size: 0.75rem;
+    }
+
+    @media (min-width: 350px) {
+        .links { width: 55%; }
+    }
+
+    @media (min-width: 500px) {
+        html { font-size: 15px; }
+    }
+
+    @media (min-width: 650px) {
+        html { font-size: 15px; }
+
+        .main-container { width: 90%; }
+    }
+
+    @media (min-width: 800px) {
+        html { font-size: 16px; }
+
+        .main-container { width: 80%; }
+    }
+
+    @media (min-width: 950px) {
+        html { font-size: 16px; }
+
+        .main-container { width: 65%; }
+    }
+
+    @media (min-width: 1100px) {
+        html { font-size: 17px; }
+
+        .main-container { width: 50%; }
+    }
+</style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="header">
+            <img class="header-img" src="snow-pine-trees-self.jpg">
+            <div class="links">
+                <div class="link">
+                    <img class="link-img" id="linkedin" src="linkedin-60.png">
+                </div>
+                <div class="link">
+                    <img class="link-img" id="github" src="github-60.png">
+                </div>
+                <div class="link">
+                    <img class="link-img" id="bitbucket" src="bitbucket-50.png">
+                </div>
+            </div>
+            <div class="about">
+                <h1>Matthew Hunt</h1>
+                <div>
+                    Agile Software Developer,
+                    Creative Problem Solver
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="exp">
+                <h1>Work Experience</h1>
+                <div class="exp-item">
+                    <div class="exp-item-header">
+                        <h3>Boeing</h3>
+                        <div class="exp-item-date">JUL2022-Now</div>
+                    </div>
+                    <ul>
+                        <li>Working on aircraft ground systems to facilitate mission planning and data analysis</li>
+                        <li>C# with .NET Framework and MSSQL</li>
+                        <li>Java, Spring Framework, Hibernate with PostgreSQL</li>
+                        <li>JavaScript with Angular JS, Web Sockets, CSS and HTML</li>
+                        <li>MATLAB</li>
+                    </ul>
+                </div>
+                <div class="exp-item">
+                    <div class="exp-item-header">
+                        <h3>Hostek</h3>
+                        <div class="exp-item-date">AUG2021-JUL2022</div>
+                    </div>
+                    <ul>
+                        <li>Worked on an assortment of server management and automation tools</li>
+                        <li>C# with .NET Core, Entity Framework with MSSQL</li>
+                        <li>PHP with MySQL</li>
+                        <li>JavaScript with jQuery, CSS and HTML</li>
+                        <li>Gitlab CI/CD</li>
+                    </ul>
+                </div>
+                <div class="exp-item">
+                    <div class="exp-item-header">
+                        <h3>Paycom</h3>
+                        <div class="exp-item-date">JAN2018-AUG2021</div>
+                    </div>
+                    <ul>
+                        <li>Worked on human capital management systems</li>
+                        <li>C# with .NET Core and .NET Framework, Entity Framework and Dapper with MySQL</li>
+                        <li>document processing with Google Vision API, Tesseract, iText for PDF</li>
+                        <li>RabbitMQ message broking</li>
+                        <li>PHP with MVC library</li>
+                        <li>JavaScript with React, Redux and Material UI, CSS and HTML</li>
+                    </ul>
+                </div>
+                <div class="exp-item">
+                    <div class="exp-item-header">
+                        <h3>Accelerated Solutions, Inc.</h3>
+                        <div class="exp-item-date">FEB2017-DEC2017</div>
+                    </div>
+                    <ul>
+                        <li>Worked on mobile siren notification system for the hearing impaired</li>
+                        <li>Swift for iOS and Java for Android</li>
+                    </ul>
+                </div>
+                <div class="exp-item">
+                    <div class="exp-item-header">
+                        <h3>Cameron University</h3>
+                        <div class="exp-item-date">JUN2014-DEC2017</div>
+                    </div>
+                    <ul>
+                        <li>Math Tutoring</li>
+                        <li>Basic Algebra, Trigonometry, Calculus</li>
+                    </ul>
+                </div>
+                <div class="exp-item">
+                    <div class="exp-item-header">
+                        <h3>USAF</h3>
+                        <div class="exp-item-date">JUL2007-JUL2011</div>
+                    </div>
+                    <ul>
+                        <li>Aircrew Egress Systems Maintenance</li>
+                        <li>A-10 and F-16 Aircraft</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="exp">
+                <h1>Education</h1>
+                <div class="exp-item">
+                    <div class="exp-item-header">
+                        <h3>Cameron University</h3>
+                        <div class="exp-item-date">JAN2015-DEC2017</div>
+                    </div>
+                    <ul>
+                        <li>Bachelor of Science in Computer Science</li>
+                        <li>GPA: 3.9</li>
+                    </ul>
+                </div>
+                <div class="exp-item">
+                    <div class="exp-item-header">
+                        <h3>Cameron University</h3>
+                        <div class="exp-item-date">AUG2012-DEC2014</div>
+                    </div>
+                    <ul>
+                        <li>Bachelor of Science in Chemistry</li>
+                        <li>GPA: 3.9</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    /**
+     * links
+     **/
+
+    function openInNewTab(url) { window.open(url, '_blank').focus(); }
+
+    function gotoLinkedIn() { openInNewTab('https://www.linkedin.com/in/matthew-hunt-95a95691/'); }
+
+    function gotoGithub() { openInNewTab('https://github.com/leroy42jenkins/'); }
+
+    function gotoBitbucket() { openInNewTab('https://bitbucket.org/GrapeTacular/'); }
+
+    document.getElementById('linkedin').addEventListener("click", gotoLinkedIn);
+
+    document.getElementById('github').addEventListener("click", gotoGithub);
+
+    document.getElementById('bitbucket').addEventListener("click", gotoBitbucket);
+</script>
+</html>
