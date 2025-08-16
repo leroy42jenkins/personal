@@ -14,11 +14,6 @@
         padding: 0;
         color: #f2f2f2;
         font-family: monospace;
-        background-image: url('snow-pine-trees.jpg');
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
     }
 
     body::-webkit-scrollbar { display: none; }
@@ -61,9 +56,25 @@
         padding: 0;
     }
 
+    canvas.background {
+        position: fixed;
+        /* top:0; right:0; bottom:0; left:0; */
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        display: block;
+        /* important: let clicks go through to foreground */
+        pointer-events: none;
+        user-select: none;
+    }
+
     .main-container {
+        position: relative;
+        z-index: 1;
         margin: 0 auto;
         width: 95%;
+        display: block;
     }
 
     .header { 
@@ -71,7 +82,7 @@
         padding: 0 0 2rem 0;
         border-radius: 0 0 0.5rem 0.5rem;
         text-align: center;
-        background-color: #004953;
+        background-color: rgba(0, 73, 83, 0.8);
         box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px;
     }
 
@@ -95,10 +106,14 @@
 
     .link {
         margin: 0;
-        padding: 1rem;
+        padding: 1rem 1rem 0rem 1rem;
     }
 
     .link:hover {
+        cursor: pointer;
+    }
+
+    #personalName:hover {
         cursor: pointer;
     }
 
@@ -125,7 +140,7 @@
         padding: 0.5rem 0 2rem 0;
         border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
         text-align: center;
-        background-color: #004953;
+        background-color: rgba(0, 73, 83, 0.8);
         box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px;
     }
 
@@ -182,9 +197,9 @@
 </style>
 </head>
 <body>
+    <canvas class="background" id="mainCanvas"></canvas>
     <div class="main-container">
         <div class="header">
-            <img class="header-img" src="snow-pine-trees-self.jpg">
             <div class="links">
                 <div class="link">
                     <img class="link-img" id="linkedin" src="linkedin-60.png">
@@ -197,7 +212,7 @@
                 </div>
             </div>
             <div class="about">
-                <h1>Matthew Hunt</h1>
+                <h1 id="personalName">Matthew Hunt</h1>
                 <div>
                     Agile Software Developer,
                     Creative Problem Solver
@@ -214,10 +229,11 @@
                     </div>
                     <ul>
                         <li>Working on aircraft ground systems to facilitate mission planning and data analysis</li>
-                        <li>C# .NET Framework, MSSQL</li>
-                        <li>Java EE, PostgreSQL</li>
+                        <li>Java, Jakarta EE, Active MQ, PostgreSQL</li>
+                        <li>C#, .NET Framework, MSSQL</li>
                         <li>Angular, Prime NG</li>
-                        <li>MATLAB</li>
+                        <li>Python, Flask</li>
+                        <li>Docker, Kubernetes</li>
                     </ul>
                 </div>
                 <div class="exp-item">
@@ -227,8 +243,8 @@
                     </div>
                     <ul>
                         <li>Worked on an assortment of server management and automation tools</li>
-                        <li>C# .NET Core, MSSQL</li>
-                        <li>PHP, MySQL, jQuery</li>
+                        <li>C#, .NET Core, MSSQL</li>
+                        <li>PHP, jQuery, MySQL</li>
                         <li>Gitlab CI/CD</li>
                     </ul>
                 </div>
@@ -239,10 +255,10 @@
                     </div>
                     <ul>
                         <li>Worked on human capital management systems</li>
-                        <li>C# .NET Core and .NET Framework, MySQL</li>
+                        <li>C#, .NET Core and .NET Framework, RabbitMQ, MySQL</li>
                         <li>document processing with Google Vision API, Tesseract, iText for PDF</li>
-                        <li>RabbitMQ message broking</li>
-                        <li>PHP, React, Redux, Material UI</li>
+                        <li>React, Redux, Material UI</li>
+                        <li>PHP, custom MVC framework</li>
                     </ul>
                 </div>
                 <div class="exp-item">
@@ -303,22 +319,277 @@
     </div>
 </body>
 <script>
+
     /**
-     * links
-     **/
+     * header image section
+     */
+
+    document.getElementById('personalName').addEventListener('click', function () {
+        const elements = document.querySelectorAll('.content');
+        elements.forEach(element => {
+            if (element.style.display === 'none') {
+                element.style.display = 'block';
+            } else {
+                element.style.display = 'none';
+            }
+        });
+    });
+
+    /**
+     * link section
+     */
 
     function openInNewTab(url) { window.open(url, '_blank').focus(); }
 
-    function gotoLinkedIn() { openInNewTab('https://www.linkedin.com/in/matthew-hunt-95a95691/'); }
+    document.getElementById('linkedin').addEventListener("click", function () {
+        openInNewTab('https://www.linkedin.com/in/matthew-hunt-95a95691/');
+    });
 
-    function gotoGithub() { openInNewTab('https://github.com/leroy42jenkins/'); }
+    document.getElementById('github').addEventListener("click", function gotoGithub() {
+        openInNewTab('https://github.com/leroy42jenkins/');
+    });
 
-    function gotoBitbucket() { openInNewTab('https://bitbucket.org/GrapeTacular/'); }
+    document.getElementById('bitbucket').addEventListener("click", function () {
+        openInNewTab('https://bitbucket.org/GrapeTacular/');
+    });
 
-    document.getElementById('linkedin').addEventListener("click", gotoLinkedIn);
+    /**
+     * canvas section
+     */
 
-    document.getElementById('github').addEventListener("click", gotoGithub);
+    const canvas = document.getElementById('mainCanvas');
+    const context = canvas.getContext('2d');
+    const desiredPixelWidth = 4;
+    const desiredPixelHeight = 4;
+    const desiredInterval = 100;
+    const deadColor = '#002054';
+    const liveColor = '#004953';
 
-    document.getElementById('bitbucket').addEventListener("click", gotoBitbucket);
+    let pastState = getBlankState();
+    let mainState = getBlankState();
+
+    window.addEventListener('resize', () => {
+        init();
+    });
+
+    init();
+
+    setInterval(drawOnCanvas, desiredInterval);
+
+    /**
+     * drawing functions
+     */
+
+    function init() {
+        calculateDimensions();
+        drawBackground();
+        mainState.grid = getRandGrid(mainState.rows, mainState.cols);
+        pastState = getClonedState(mainState);
+        drawOnCanvas();
+    }
+
+    function drawOnCanvas() {
+        drawGrid();
+        updateState();
+    }
+
+    function calculateDimensions() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const rows = Math.floor(canvas.height / desiredPixelHeight);
+        const cols = Math.floor(canvas.width / desiredPixelWidth);
+        mainState.rows = rows;
+        mainState.cols = cols;
+        mainState.reWidth = desiredPixelWidth;
+        mainState.reHeight = desiredPixelHeight;
+    }
+
+    function updateState() {
+        pastState = getClonedState(mainState);
+        mainState = getNewState(mainState);
+    }
+
+    function drawBackground() {
+        context.fillStyle = deadColor;
+        context.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function drawGrid() {
+        const rows = mainState.rows;
+        const cols = mainState.cols;
+        let skipped = 0;
+        let drawn = 0;
+
+        for (let r = 0; r < rows; ++r) {
+            for (let c = 0; c < cols; ++c) {
+                const past = pastState.grid[r][c];
+                const main = mainState.grid[r][c];
+
+                if (main == past) {
+                    skipped += 1;
+                } else {
+                    drawn += 1;
+                    if (main == 0) {
+                        drawRectangle(r, c, mainState.deadColor);
+                    } else {
+                        drawRectangle(r, c, mainState.liveColor);
+                    }
+                }
+            }
+        }
+    }
+
+    function drawRectangle(row, col, color) {
+        context.fillStyle = color;
+        const x = mainState.reWidth * col;
+        const y = mainState.reHeight * row;
+        const w = mainState.reWidth;
+        const h = mainState.reHeight;
+        context.fillRect(x, y, w, h);
+    }
+
+    /**
+     * state functions
+     */
+
+    function getBlankState() {
+        return {
+            grid: [],
+            rows: 0,
+            cols: 0,
+            reWidth: 0,
+            reHeight: 0,
+            deadColor: deadColor,
+            liveColor: liveColor
+        };
+    }
+
+    function getClonedState(state) {
+        return {
+            grid: getClonedGrid(state.grid),
+            rows: state.rows,
+            cols: state.cols,
+            reWidth: state.reWidth,
+            reHeight: state.reWidth,
+            deadColor: state.deadColor,
+            liveColor: state.liveColor
+        };
+    }
+
+    function getNewState(curState) {
+        const rows = curState.rows;
+        const cols = curState.cols;
+
+        let newState = {
+            grid: getEmptyGrid(rows, cols),
+            rows: rows,
+            cols: cols,
+            reWidth: curState.reWidth,
+            reHeight: curState.reWidth,
+            deadColor: curState.deadColor,
+            liveColor: curState.liveColor
+        };
+
+        for (let r = 0; r < rows; ++r) {
+            for (let c = 0; c < cols; ++c) {
+                const totalAround = getSurroundingLifeTotal(curState, r, c);
+                const currentCell = curState.grid[r][c];
+                const newCell = getNewLifeStateAccordingToRule(totalAround, currentCell);
+                newState.grid[r][c] = newCell;
+            }
+        }
+
+        return newState;
+    }
+
+    function getNewLifeStateAccordingToRule(totalAround, currentCell) {
+        let newCell = 0;
+
+        if (currentCell == 1) {
+            if (totalAround < 2) {
+                newCell = 0;
+            } else if (totalAround == 2 || totalAround == 3) {
+                newCell = 1;
+            } else {
+                newCell = 0;
+            }
+        } else {
+            if (totalAround == 3) {
+                newCell = 1;
+            }
+        }
+
+        return newCell;
+    }
+
+    function getSurroundingLifeTotal(state, row, col) {
+        const offsets = [-1, 0, 1];
+        let total = 0;
+
+        for (let i = 0; i < 3; ++i) {
+            for (let j = 0; j < 3; ++j) {
+                const r = getSafeRow(row + offsets[i], state.rows);
+                const c = getSafeCol(col + offsets[j], state.cols);
+                if (r != row || c != col) {
+                    total += state.grid[r][c];
+                }
+            }
+        }
+
+        return total;
+    }
+
+    function getSafeRow(r, rows) {
+        if (r < 0) return rows - 1;
+        if (r >= rows) return rows % Math.abs(r);
+        return r;
+    }
+
+    function getSafeCol(c, cols) {
+        if (c < 0) return cols - 1;
+        if (c >= cols) return cols % Math.abs(c);
+        return c;
+    }
+
+    function getClonedGrid(grid) {
+        if (grid.length < 1) return [];
+
+        let clone = new Array(grid.length);
+        for (let r = 0; r < grid.length; ++r) {
+            clone[r] = new Array(grid[r].length);
+            for (let c = 0; c < grid[r].length; ++c) {
+                clone[r][c] = grid[r][c];
+            }
+        } 
+
+        return clone;
+    }
+
+    function getRandGrid(rows, cols) {
+        const randGrid = getEmptyGrid(rows, cols);
+        for (let r = 0; r < rows; ++r) {
+            for (let c = 0; c < cols; ++c) {
+                randGrid[r][c] = getRandInt(1001) % 2;
+            }
+        }
+
+        return randGrid;
+    }
+
+    function getEmptyGrid(rows, cols) {
+        const grid = new Array(rows);
+        for (let r = 0; r < rows; ++r) {
+            grid[r] = new Array(cols);
+            for (let c = 0; c < cols; ++c) {
+                grid[r][c] = 0;
+            }
+        }
+
+        return grid;
+    }
+
+    function getRandInt(max) {
+        return Math.floor(Math.random() * max);
+    }
 </script>
 </html>
