@@ -354,6 +354,55 @@
     });
 
     /**
+     * query parameters
+     */
+
+    function getQueryParams() {
+        // Remove leading '?'
+        const queryString = window.location.search.slice(1);
+        const pairs = queryString ? queryString.split('&') : [];
+        return pairs.reduce((params, pair) => {
+            if (pair) {
+                const [key, value] = pair.split('=');
+                params[decodeURIComponent(key)] = decodeURIComponent(value || '');
+            }
+            return params;
+        }, {});
+    }
+
+    function setQueryParams(params) {
+        const basePath = window.location.pathname;
+        const queryString = new URLSearchParams(params).toString();
+        window.history.replaceState({}, '', `${basePath}?${queryString}`);
+    }
+
+    function stringToNumberArray(s) {
+        return s.split('').map(Number);
+    }
+
+    function numberArrayToString(a) {
+        return a.join('');
+    }
+
+    function getGameRuleFromUrl() {
+        const params = getQueryParams();
+        const survival = params['s'] && params['s'].length > 0
+            ? stringToNumberArray(params['s'])
+            : [2, 3]; // default
+        const birth = params['s'] && params['s'].length > 0
+            ? stringToNumberArray(params['b'])
+            : [3]; // default
+        return { s: survival, b: birth };
+    }
+
+    function setGameRuleInUrl(rule) {
+        const survival = numberArrayToString(rule.s);
+        const birth = numberArrayToString(rule.b);
+        const params = { s: survival, b: birth };
+        setQueryParams(params);
+    }
+
+    /**
      * canvas section
      */
 
@@ -367,6 +416,13 @@
 
     let pastState = getBlankState();
     let mainState = getBlankState();
+    // default to 'Game of Life'
+    let gameRule = { s: [2, 3], b: [3] };
+
+    window.addEventListener('load', () => {
+        gameRule = getGameRuleFromUrl();
+        setGameRuleInUrl(gameRule);
+    });
 
     window.addEventListener('resize', () => {
         init();
@@ -504,19 +560,13 @@
 
     function getNewLifeStateAccordingToRule(totalAround, currentCell) {
         let newCell = 0;
+        let survival = gameRule.s;
+        let birth = gameRule.b;
 
         if (currentCell == 1) {
-            if (totalAround < 2) {
-                newCell = 0;
-            } else if (totalAround == 2 || totalAround == 3) {
-                newCell = 1;
-            } else {
-                newCell = 0;
-            }
+            newCell = survival.includes(totalAround) ? 1 : 0;
         } else {
-            if (totalAround == 3) {
-                newCell = 1;
-            }
+            newCell = birth.includes(totalAround) ? 1 : 0;
         }
 
         return newCell;
