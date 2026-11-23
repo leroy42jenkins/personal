@@ -54,6 +54,7 @@
     li {
         margin: 0.5rem 1rem 0 2.5rem;
         padding: 0;
+        line-height: 1.45;
     }
 
     canvas.background {
@@ -130,6 +131,12 @@
         text-align: center;
     }
 
+    .about-summary {
+        margin: 0;
+        line-height: 1.5;
+        text-align: left;
+    }
+
     .content {
         margin: 0;
         padding: 0;
@@ -155,12 +162,58 @@
         padding: 0;
         display: flex;
         justify-content: space-between;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 0.25rem 1rem;
     }
 
-    .exp-item-date {
-        margin: 1.25rem 1rem 0 0;
-        padding: 0;
+    .exp-item-header h3 {
+        margin: 1rem 1rem 0.25rem 1rem;
+    }
+
+    .exp-subitem {
+        margin: 0.75rem 0 1.25rem 0;
+    }
+
+    .exp-item-header + .exp-subitem {
+        margin-top: 0.25rem;
+    }
+
+    .exp-subitem:last-child {
+        margin-bottom: 0;
+    }
+
+    .exp-subitem-header {
+        margin: 0 1rem 0.4rem 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 0.25rem 1rem;
+    }
+
+    .exp-subitem-title {
+        font-size: 0.95rem;
+        font-weight: bold;
+        opacity: 0.95;
+    }
+
+    .exp-subitem-date {
         font-size: 0.75rem;
+        opacity: 0.85;
+    }
+
+    .exp-subitem-note {
+        margin: -0.2rem 1rem 0.5rem 1rem;
+        font-size: 0.8rem;
+        font-style: italic;
+        opacity: 0.8;
+    }
+
+    .exp-item-summary {
+        margin: 0.25rem 1rem 0.6rem 1rem;
+        line-height: 1.45;
+        opacity: 0.92;
     }
 
     @media (min-width: 350px) {
@@ -213,10 +266,9 @@
             </div>
             <div class="about">
                 <h1 id="personalName">Matthew Hunt</h1>
-                <div>
-                    Agile Software Developer,
-                    Creative Problem Solver
-                </div>
+                <p class="about-summary">
+                    I'm a Senior Full-Stack Software Engineer with 9+ years of experience building, modernizing, and integrating complex software systems &mdash; from aircraft mission-planning and post-mission analysis systems to high-volume enterprise document processing platforms.
+                </p>
             </div>
         </div>
         <div class="content">
@@ -225,71 +277,120 @@
                 <div class="exp-item">
                     <div class="exp-item-header">
                         <h3>Boeing</h3>
-                        <div class="exp-item-date">JUL2022-Now</div>
                     </div>
-                    <ul>
-                        <li>Working on aircraft ground systems to facilitate mission planning and data analysis</li>
-                        <li>Java, Jakarta EE, Active MQ, PostgreSQL</li>
-                        <li>C#, .NET Framework, MSSQL</li>
-                        <li>Angular, Prime NG</li>
-                        <li>Python, Flask</li>
-                        <li>Docker, Kubernetes</li>
-                    </ul>
+                    <div class="exp-subitem">
+                        <div class="exp-subitem-header">
+                            <div class="exp-subitem-title">Software Engineer 3</div>
+                            <div class="exp-subitem-date">Oct 2023 - Present</div>
+                        </div>
+                        <div class="exp-subitem-note">Full Time</div>
+                        <p class="exp-item-summary">
+                            Converted from contractor to full-time Boeing staff on the same engineering team; serving as a senior full-stack engineer contributing to technical design, complex aircraft system integrations, and teammate mentorship.
+                        </p>
+                        <ul>
+                            <li>Build and maintain a mission-planning and post-mission processing ground system using Java, Angular, and PostgreSQL to manage mission data and coordinate complex integrations with aircraft software</li>
+                            <li>Use Keycloak to manage user roles, for single sign-on, and for single logout</li>
+                            <li>Maintain and integrate a Python service responsible for installing aircraft software onto ground systems to support mission planning</li>
+                            <li>Containerize and deploy services across local, staging, and production environments using Podman, Kubernetes, and Helm</li>
+                            <li>Contribute to architectural and feature design decisions while helping teammates troubleshoot complex integration issues and accomplish sprint goals</li>
+                        </ul>
+                    </div>
+                    <div class="exp-subitem">
+                        <div class="exp-subitem-header">
+                            <div class="exp-subitem-title">Software Engineer</div>
+                            <div class="exp-subitem-date">Jul 2022 - Sep 2023</div>
+                        </div>
+                        <div class="exp-subitem-note">Contract via Prime Technical Services Inc.</div>
+                        <p class="exp-item-summary">
+                            Software engineer embedded on the same Boeing aircraft ground systems team prior to full-time conversion.
+                        </p>
+                        <ul>
+                            <li>Modernized a legacy C# flight data recording analysis application from Windows XP to Windows Server 2022, extending platform lifecycle and compatibility</li>
+                            <li>Updated recording format definitions, SQL Server database generation logic, and stored procedures to support newer aircraft recording variables</li>
+                            <li>Learned the basics of MATLAB rapidly to update data-visualization and analysis scripts used to inspect recorded flight data</li>
+                            <li>Contributed UI bug fixes and database-parsing tooling improvements for mission-planning and post-mission processing software</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="exp-item">
                     <div class="exp-item-header">
                         <h3>Hostek</h3>
-                        <div class="exp-item-date">AUG2021-JUL2022</div>
                     </div>
-                    <ul>
-                        <li>Worked on an assortment of server management and automation tools</li>
-                        <li>C#, .NET Core, MSSQL</li>
-                        <li>PHP, jQuery, MySQL</li>
-                        <li>Gitlab CI/CD</li>
-                    </ul>
+                    <div class="exp-subitem">
+                        <div class="exp-subitem-header">
+                            <div class="exp-subitem-title">Software Developer</div>
+                            <div class="exp-subitem-date">Aug 2021 - Jul 2022</div>
+                        </div>
+                        <ul>
+                            <li>Migrated an unversioned legacy C# Windows Service codebase into version control, establishing safer change tracking and team collaboration</li>
+                            <li>Updated and maintained modules of a Windows server management and automation system across backend services and web interfaces</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="exp-item">
                     <div class="exp-item-header">
                         <h3>Paycom</h3>
-                        <div class="exp-item-date">JAN2018-AUG2021</div>
                     </div>
-                    <ul>
-                        <li>Worked on human capital management systems</li>
-                        <li>C#, .NET Core and .NET Framework, RabbitMQ, MySQL</li>
-                        <li>document processing with Google Vision API, Tesseract, iText for PDF</li>
-                        <li>React, Redux, Material UI</li>
-                        <li>PHP, custom MVC framework</li>
-                    </ul>
+                    <div class="exp-subitem">
+                        <div class="exp-subitem-header">
+                            <div class="exp-subitem-title">Software Developer</div>
+                            <div class="exp-subitem-date">Jan 2018 - Aug 2021</div>
+                        </div>
+                        <p class="exp-item-summary">
+                            Full-stack software developer focused on data ingestion, document processing, and web applications for enterprise human capital management (HCM) systems.
+                        </p>
+                        <ul>
+                            <li>Redesigned and implemented a client-onboarding document processing service ingesting large PDFs, Excel spreadsheets, and text files into Paycom systems</li>
+                            <li>Utilized RabbitMQ for job scheduling</li>
+                            <li>Engineered a drop-in direct PDF text-extraction replacement using iTextSharp and iText7 for the existing multi-threaded OCR pipeline (Tesseract) &mdash; handling most client PDFs in a single thread while running significantly faster than the prior multi-threaded OCR approach</li>
+                            <li>Authored coordinate-based PDF parsing templates to accurately extract employee earnings, taxes, and deductions from client documents directly into Paycom database tables</li>
+                            <li>Developed features for the team's primary React frontend application, applying Redux state management to improve functionality and long-term maintainability</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="exp-item">
                     <div class="exp-item-header">
                         <h3>Accelerated Solutions, Inc.</h3>
-                        <div class="exp-item-date">FEB2017-DEC2017</div>
                     </div>
-                    <ul>
-                        <li>Worked on mobile siren notification system for the hearing impaired</li>
-                        <li>Swift for iOS and Java for Android</li>
-                    </ul>
+                    <div class="exp-subitem">
+                        <div class="exp-subitem-header">
+                            <div class="exp-subitem-title">Intern Software Developer</div>
+                            <div class="exp-subitem-date">Feb 2017 - Dec 2017</div>
+                        </div>
+                        <ul>
+                            <li>Developed components of a mobile siren notification application for hearing-impaired users in Java (Android) and Swift (iOS)</li>
+                            <li>Researched and prototyped acoustic siren-detection approaches in Python using Fast Fourier Transforms (FFT) and audio signal-processing algorithms</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="exp-item">
                     <div class="exp-item-header">
                         <h3>Cameron University</h3>
-                        <div class="exp-item-date">JUN2014-DEC2017</div>
                     </div>
-                    <ul>
-                        <li>Math Tutoring</li>
-                        <li>Basic Algebra, Trigonometry, Calculus</li>
-                    </ul>
+                    <div class="exp-subitem">
+                        <div class="exp-subitem-header">
+                            <div class="exp-subitem-title">Mathematics Tutor</div>
+                            <div class="exp-subitem-date">Jun 2014 - Dec 2017</div>
+                        </div>
+                        <ul>
+                            <li>Tutored university students across undergraduate mathematics coursework, breaking down complex analytical concepts into clear, step-by-step explanations</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="exp-item">
                     <div class="exp-item-header">
                         <h3>USAF</h3>
-                        <div class="exp-item-date">JUL2007-JUL2011</div>
                     </div>
-                    <ul>
-                        <li>Aircrew Egress Systems Maintenance</li>
-                        <li>A-10 and F-16 Aircraft</li>
-                    </ul>
+                    <div class="exp-subitem">
+                        <div class="exp-subitem-header">
+                            <div class="exp-subitem-title">Egress Systems Journeyman</div>
+                            <div class="exp-subitem-date">Aug 2007 - Jun 2011</div>
+                        </div>
+                        <ul>
+                            <li>Maintained, inspected, and troubleshot safety-critical aircraft egress systems under strict technical compliance and operational readiness standards</li>
+                            <li>Built firsthand military aviation and flight-line domain knowledge that directly informs current work on aircraft ground and mission systems</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="exp">
@@ -297,21 +398,10 @@
                 <div class="exp-item">
                     <div class="exp-item-header">
                         <h3>Cameron University</h3>
-                        <div class="exp-item-date">JAN2015-DEC2017</div>
                     </div>
                     <ul>
-                        <li>Bachelor of Science in Computer Science</li>
-                        <li>GPA: 3.9</li>
-                    </ul>
-                </div>
-                <div class="exp-item">
-                    <div class="exp-item-header">
-                        <h3>Cameron University</h3>
-                        <div class="exp-item-date">AUG2012-DEC2014</div>
-                    </div>
-                    <ul>
-                        <li>Bachelor of Science in Chemistry</li>
-                        <li>GPA: 3.9</li>
+                        <li>Bachelor of Science in Computer Science &middot; 2015 - 2017 &middot; GPA: 3.9</li>
+                        <li>Bachelor of Science in Chemistry &middot; 2012 - 2015 &middot; GPA: 3.9 &middot; Sigma Pi Sigma</li>
                     </ul>
                 </div>
             </div>
